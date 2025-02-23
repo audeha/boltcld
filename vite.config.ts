@@ -94,8 +94,17 @@ export default defineConfig((config) => {
       target: "esnext",
       sourcemap: false, // Disables sourcemaps to reduce memory usage
       minify: "esbuild", // Uses esbuild for faster and lower-memory builds
-      chunkSizeWarningLimit: 2000, // Avoids large chunk warnings
+      chunkSizeWarningLimit: 4000, // Avoids large chunk warnings
       cssCodeSplit: false, // Prevents excessive CSS splitting
+      rollupOptions: {
+        output: {
+          manualChunks(id) {
+            if (id.includes("node_modules")) {
+              return "vendor"; // Moves dependencies to a separate file
+            }
+          },
+        },
+      },
     },
     plugins: [
       nodePolyfills({
