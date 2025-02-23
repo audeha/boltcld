@@ -91,7 +91,11 @@ export default defineConfig((config) => {
       __PKG_OPTIONAL_DEPENDENCIES: JSON.stringify(pkg.optionalDependencies),
     },
     build: {
-      target: 'esnext',
+      target: "esnext",
+      sourcemap: false, // Disables sourcemaps to reduce memory usage
+      minify: "esbuild", // Uses esbuild for faster and lower-memory builds
+      chunkSizeWarningLimit: 2000, // Avoids large chunk warnings
+      cssCodeSplit: false, // Prevents excessive CSS splitting
     },
     plugins: [
       nodePolyfills({
