@@ -1,3 +1,4 @@
 compatibility_date = "2024-09-23"
 node_compat = true
 log_level = "verbose"
+pages_build_output_dir = "./build"
