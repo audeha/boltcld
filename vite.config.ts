@@ -96,6 +96,14 @@ export default defineConfig((config) => {
       minify: "esbuild", // Uses esbuild for faster and lower-memory builds
       chunkSizeWarningLimit: 4000, // Avoids large chunk warnings
       cssCodeSplit: false, // Prevents excessive CSS splitting
+      resolve: {
+        alias: {
+          child_process: "node:child_process",
+          util: "node:util",
+          crypto: "node:crypto",    
+          stream: "node:stream",
+        },
+      },
     },
     plugins: [
       nodePolyfills({
