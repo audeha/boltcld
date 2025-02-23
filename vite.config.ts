@@ -8,7 +8,6 @@ import * as dotenv from 'dotenv';
 import { execSync } from 'child_process';
 import { readFileSync } from 'fs';
 import { join } from 'path';
-import { Transform } from 'node:stream';
 
 dotenv.config();
 
@@ -97,13 +96,9 @@ export default defineConfig((config) => {
       minify: "esbuild", // Uses esbuild for faster and lower-memory builds
       chunkSizeWarningLimit: 4000, // Avoids large chunk warnings
       cssCodeSplit: false, // Prevents excessive CSS splitting
-      rollupOptions: {
-        output: {
-          manualChunks(id) {
-            if (id.includes("node_modules")) {
-              return "vendor"; // Moves dependencies to a separate file
-            }
-          },
+      resolve: {
+        alias: {
+          stream: "node:stream",
         },
       },
     },
