@@ -98,6 +98,9 @@ export default defineConfig((config) => {
       cssCodeSplit: false, // Prevents excessive CSS splitting
       resolve: {
         alias: {
+          child_process: "node:child_process",
+          util: "node:util",
+          crypto: "node:crypto",    
           stream: "node:stream",
         },
       },
